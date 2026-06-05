@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ICT Support Agent V3</title>
+    <link rel="stylesheet" href="./ict-support-agent-v3.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="chat-panel" aria-label="ICT support chat">
+        <header class="app-header">
+          <div>
+            <p class="eyebrow">Prototype V3</p>
+            <h1>ICT Support Agent</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" aria-label="Nieuwe chat" title="Nieuwe chat">
+            <span aria-hidden="true">Nieuwe melding starten</span>
+          </button>
+        </header>
+
+        <div class="quick-actions" aria-label="Voorbeelden">
+          <button type="button" data-example="Mijn VPN werkt niet">VPN werkt niet</button>
+          <button type="button" data-example="De printer werkt niet">Printer werkt niet</button>
+          <button type="button" data-example="Ik ben mijn wachtwoord vergeten">Wachtwoord vergeten</button>
+          <button type="button" data-example="Mijn laptop is traag">Laptop traag</button>
+          <button type="button" data-example="Teams audio doet het niet">Teams audio</button>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+
+        <form class="composer" id="chatForm">
+          <label class="sr-only" for="userInput">Beschrijf je ICT-probleem</label>
+          <input
+            id="userInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Beschrijf je ICT-probleem..."
+          />
+          <button id="sendButton" type="submit">Verstuur</button>
+        </form>
+      </section>
+
+      <aside class="ticket-panel" aria-label="TOPdesk conceptticket">
+        <div class="ticket-header">
+          <div>
+            <p class="eyebrow">TOPdesk</p>
+            <h2>Conceptticket</h2>
+          </div>
+          <span class="status-pill" id="ticketStatus">Nog niet nodig</span>
+        </div>
+
+        <div class="ticket-empty" id="ticketEmpty">
+          Als het probleem niet opgelost is, maakt de agent hier een conceptticket met de verzamelde informatie.
+        </div>
+
+        <article class="ticket-card hidden" id="ticketCard">
+          <dl>
+            <div>
+              <dt>Titel</dt>
+              <dd id="ticketTitle"></dd>
+            </div>
+            <div>
+              <dt>Categorie</dt>
+              <dd id="ticketCategory"></dd>
+            </div>
+            <div>
+              <dt>Impact</dt>
+              <dd id="ticketImpact"></dd>
+            </div>
+            <div>
+              <dt>Urgentie</dt>
+              <dd id="ticketUrgency"></dd>
+            </div>
+            <div>
+              <dt>Prioriteit</dt>
+              <dd id="ticketPriority"></dd>
+            </div>
+            <div>
+              <dt>Classificatie</dt>
+              <dd id="ticketPriorityReason"></dd>
+            </div>
+            <div>
+              <dt>Omschrijving</dt>
+              <dd id="ticketDescription"></dd>
+            </div>
+            <div>
+              <dt>Bron</dt>
+              <dd id="ticketSource"></dd>
+            </div>
+          </dl>
+        </article>
+      </aside>
+    </main>
+
+    <script src="./ict-support-agent-v3.js"></script>
+  </body>
+</html>
