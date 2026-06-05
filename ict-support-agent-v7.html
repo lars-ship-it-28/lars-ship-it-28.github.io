@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=./ict-support-agent-v8.html" />
+    <title>ICT Support Agent V7</title>
+    <link rel="stylesheet" href="./ict-support-agent-v7.css" />
+    <script>
+      window.location.replace("./ict-support-agent-v8.html");
+    </script>
+  </head>
+  <body>
+    <div class="teams-shell">
+      <aside class="teams-rail" aria-label="Teams navigatie">
+        <div class="waffle" aria-hidden="true">•••<br />•••<br />•••</div>
+        <div class="teams-logo" aria-hidden="true">T</div>
+        <nav>
+          <span>Activiteit</span>
+          <span>Chat</span>
+          <span>Agenda</span>
+          <span class="active">Support</span>
+          <span>Apps</span>
+        </nav>
+      </aside>
+
+      <div class="teams-main">
+        <header class="teams-topbar">
+          <div class="search-box" aria-hidden="true">Zoeken (Ctrl+Alt+E)</div>
+          <div class="user-chip" aria-hidden="true">MA</div>
+        </header>
+
+        <section class="teams-app-header">
+          <div class="app-mark" aria-hidden="true"></div>
+          <div>
+            <h1>ICT Support Agent</h1>
+            <p>Professionele intake voor ICT-problemen en TOPdesk-concepttickets</p>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" aria-label="Nieuwe melding starten" title="Nieuwe melding starten">
+            Nieuwe melding starten
+          </button>
+        </section>
+
+        <nav class="tabbar" aria-label="Applicatie tabs">
+          <span class="active">Melding</span>
+          <span>Ticket</span>
+          <span>Kennis</span>
+        </nav>
+
+        <main class="app-shell">
+          <section class="chat-panel" aria-label="ICT support wizard">
+            <div class="wizard-header">
+              <div>
+                <p class="eyebrow">Prototype V7</p>
+                <h2>Nieuwe ICT-melding</h2>
+              </div>
+              <span class="status-pill">Wizard</span>
+            </div>
+
+            <div class="quick-actions" aria-label="Voorbeelden">
+              <button type="button" data-example="Mijn VPN werkt niet">VPN werkt niet</button>
+              <button type="button" data-example="De printer werkt niet">Printer werkt niet</button>
+              <button type="button" data-example="Ik ben mijn wachtwoord vergeten">Wachtwoord vergeten</button>
+              <button type="button" data-example="Mijn laptop is traag">Laptop traag</button>
+              <button type="button" data-example="Teams audio doet het niet">Teams audio</button>
+            </div>
+
+            <div class="messages" id="messages" aria-live="polite"></div>
+
+            <form class="composer" id="chatForm">
+              <label class="sr-only" for="userInput">Beschrijf je ICT-probleem</label>
+              <input
+                id="userInput"
+                type="text"
+                autocomplete="off"
+                placeholder="Beschrijf je ICT-probleem..."
+              />
+              <button id="sendButton" type="submit">Volgende</button>
+            </form>
+          </section>
+
+          <aside class="ticket-panel" aria-label="TOPdesk conceptticket">
+            <div class="ticket-header">
+              <div>
+                <p class="eyebrow">TOPdesk</p>
+                <h2>Conceptticket</h2>
+              </div>
+              <span class="status-pill" id="ticketStatus">Nog niet nodig</span>
+            </div>
+
+            <div class="ticket-empty" id="ticketEmpty">
+              Het conceptticket verschijnt hier zodra de intake compleet is.
+            </div>
+
+            <article class="ticket-card hidden" id="ticketCard">
+              <dl>
+                <div>
+                  <dt>Titel</dt>
+                  <dd id="ticketTitle"></dd>
+                </div>
+                <div>
+                  <dt>Categorie</dt>
+                  <dd id="ticketCategory"></dd>
+                </div>
+                <div>
+                  <dt>Impact</dt>
+                  <dd id="ticketImpact"></dd>
+                </div>
+                <div>
+                  <dt>Urgentie</dt>
+                  <dd id="ticketUrgency"></dd>
+                </div>
+                <div>
+                  <dt>Prioriteit</dt>
+                  <dd id="ticketPriority"></dd>
+                </div>
+                <div>
+                  <dt>Classificatie</dt>
+                  <dd id="ticketPriorityReason"></dd>
+                </div>
+                <div>
+                  <dt>Omschrijving</dt>
+                  <dd id="ticketDescription"></dd>
+                </div>
+                <div>
+                  <dt>Bron</dt>
+                  <dd id="ticketSource"></dd>
+                </div>
+              </dl>
+              <div class="ticket-actions">
+                <button id="downloadTicketButton" type="button">Download ticket.json</button>
+              </div>
+            </article>
+          </aside>
+        </main>
+      </div>
+    </div>
+
+    <script src="./ict-support-agent-v7.js"></script>
+  </body>
+</html>

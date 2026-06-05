@@ -5,15 +5,15 @@ Dit is een statisch prototype van een ICT support agent. De app helpt gebruikers
 ## Bestanden
 
 - `index.html` opent automatisch de nieuwste versie.
-- `ict-support-agent-v3.html` is de huidige applicatie.
-- `ict-support-agent-v3.css` bevat de styling.
-- `ict-support-agent-v3.js` bevat de chatlogica, mock-handleidingen, checklist, prioriteitenmatrix en ticketopbouw.
+- `ict-support-agent-v8.html` is de huidige applicatie.
+- `ict-support-agent-v8.css` bevat de Teams/Fluent-styling.
+- `ict-support-agent-v8.js` bevat de chatlogica, mock-handleidingen, checklist, prioriteitenmatrix, ticketopbouw, interne JSON-generatie en ticketweergave voor ICT-medewerkers.
 - `ict-support-agent-v1.*` en `ict-support-agent-v2.*` zijn oudere prototypeversies.
 - `ict-support-agent-blauwdruk.md` bevat de functionele blauwdruk.
 
 ## Lokaal starten
 
-Open `index.html` of `ict-support-agent-v3.html` direct in een browser. Er is geen server, installatie of buildstap nodig.
+Open `index.html` of `ict-support-agent-v8.html` direct in een browser. Er is geen server, installatie of buildstap nodig.
 
 ## GitHub Pages publicatie
 

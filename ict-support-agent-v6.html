@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="refresh" content="0; url=./ict-support-agent-v8.html" />
-    <title>ICT Support Agent V2</title>
-    <link rel="stylesheet" href="./ict-support-agent-v2.css" />
+    <title>ICT Support Agent V6</title>
+    <link rel="stylesheet" href="./ict-support-agent-v6.css" />
     <script>
       window.location.replace("./ict-support-agent-v8.html");
     </script>
@@ -15,7 +15,7 @@
       <section class="chat-panel" aria-label="ICT support chat">
         <header class="app-header">
           <div>
-            <p class="eyebrow">Prototype V2</p>
+            <p class="eyebrow">Prototype V6</p>
             <h1>ICT Support Agent</h1>
           </div>
           <button class="icon-button" id="resetButton" type="button" aria-label="Nieuwe chat" title="Nieuwe chat">
@@ -81,6 +81,10 @@
               <dd id="ticketPriority"></dd>
             </div>
             <div>
+              <dt>Classificatie</dt>
+              <dd id="ticketPriorityReason"></dd>
+            </div>
+            <div>
               <dt>Omschrijving</dt>
               <dd id="ticketDescription"></dd>
             </div>
@@ -89,10 +93,13 @@
               <dd id="ticketSource"></dd>
             </div>
           </dl>
+          <div class="ticket-actions">
+            <button id="downloadTicketButton" type="button">Download ticket.json</button>
+          </div>
         </article>
       </aside>
     </main>
 
-    <script src="./ict-support-agent-v2.js"></script>
+    <script src="./ict-support-agent-v6.js"></script>
   </body>
 </html>
