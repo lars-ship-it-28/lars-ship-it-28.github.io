@@ -653,6 +653,7 @@ function createTicket() {
     description,
     source: manual.source,
     answers: [...state.answers],
+    answerDetails: buildAnswerDetails(manual),
     stepsAlreadyTried: [...state.selectedPreviousSteps],
     proposedSteps: [...manual.steps],
     canStillWork: formatWorkStatus(),
@@ -691,6 +692,30 @@ function buildCompactTicketDescription(manual) {
     `Eerdere acties: ${triedSummary}.`,
     "Servicedeskactie nodig om oorzaak te onderzoeken en vervolgstap te bepalen."
   ].join("\n");
+}
+
+function buildAnswerDetails(manual) {
+  return state.answers.map((answer) => {
+    if (answer.startsWith("Eerste melding:")) {
+      return {
+        question: "Probleemmelding",
+        answer: answer.replace("Eerste melding:", "").trim()
+      };
+    }
+
+    const matchedQuestion = manual.questions.find((question) => answer.startsWith(question));
+    if (matchedQuestion) {
+      return {
+        question: matchedQuestion.replace(/\?$/, ""),
+        answer: answer.slice(matchedQuestion.length).trim()
+      };
+    }
+
+    return {
+      question: "Aanvullende informatie",
+      answer
+    };
+  });
 }
 
 function formatProblemName(manual) {
@@ -780,7 +805,13 @@ function viewConceptTicket() {
 
 function buildTicketViewHtml(ticket) {
   const priorityLevel = ticket.priority.split(" ")[0].toLowerCase();
-  const answers = ticket.answers.length ? ticket.answers.map((answer) => `<li>${escapeHtml(answer)}</li>`).join("") : "<li>Geen antwoorden vastgelegd.</li>";
+  const answerDetails = ticket.answerDetails && ticket.answerDetails.length
+    ? ticket.answerDetails.map((item) => `
+            <div class="qa-row">
+              <div class="qa-label">${escapeHtml(item.question)}</div>
+              <div class="qa-value">${escapeHtml(item.answer || "Niet ingevuld")}</div>
+            </div>`).join("")
+    : `<div class="qa-row"><div class="qa-label">Status</div><div class="qa-value">Geen antwoorden vastgelegd.</div></div>`;
   const triedSteps = ticket.stepsAlreadyTried.length ? ticket.stepsAlreadyTried.map((step) => `<li>${escapeHtml(step)}</li>`).join("") : "<li>Geen stappen geselecteerd als eerder geprobeerd.</li>";
   const proposedSteps = ticket.proposedSteps.length ? ticket.proposedSteps.map((step) => `<li>${escapeHtml(step)}</li>`).join("") : "<li>Geen oplossingsstappen beschikbaar.</li>";
 
@@ -841,9 +872,9 @@ function buildTicketViewHtml(ticket) {
 
       .layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 340px;
-        gap: 22px;
-        padding: 24px;
+        grid-template-columns: minmax(0, 0.66fr) minmax(430px, 0.34fr);
+        gap: 18px;
+        padding: 20px 24px;
       }
 
       .card {
@@ -856,7 +887,7 @@ function buildTicketViewHtml(ticket) {
 
       .card-header {
         border-bottom: 1px solid var(--line);
-        padding: 18px 20px;
+        padding: 13px 16px;
       }
 
       h1, h2 {
@@ -865,7 +896,7 @@ function buildTicketViewHtml(ticket) {
       }
 
       h1 { font-size: 24px; }
-      h2 { font-size: 18px; }
+      h2 { font-size: 17px; }
 
       .meta {
         color: var(--muted);
@@ -873,20 +904,20 @@ function buildTicketViewHtml(ticket) {
       }
 
       .content {
-        padding: 20px;
+        padding: 14px 16px;
       }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        gap: 10px;
       }
 
       .field {
         border: 1px solid var(--line);
         border-radius: 8px;
         background: #fafafa;
-        padding: 12px;
+        padding: 10px;
       }
 
       .label {
@@ -917,17 +948,48 @@ function buildTicketViewHtml(ticket) {
       .badge.p3 { background: var(--p3); }
 
       ul {
-        margin: 10px 0 0;
-        padding-left: 20px;
+        margin: 6px 0 0;
+        padding-left: 18px;
       }
 
       li {
-        margin: 6px 0;
+        margin: 3px 0;
+        line-height: 1.35;
+      }
+
+      .qa-list {
+        display: grid;
+        gap: 7px;
+      }
+
+      .qa-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.48fr) minmax(0, 0.52fr);
+        gap: 10px;
+        align-items: start;
+        border-bottom: 1px solid #edf0f3;
+        padding-bottom: 7px;
+      }
+
+      .qa-row:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .qa-label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .qa-value {
+        line-height: 1.35;
+        word-break: break-word;
       }
 
       .stack {
         display: grid;
-        gap: 16px;
+        gap: 10px;
       }
 
       @media (max-width: 900px) {
@@ -1014,8 +1076,8 @@ function buildTicketViewHtml(ticket) {
           <div class="card-header">
             <h2>Verzamelde antwoorden</h2>
           </div>
-          <div class="content">
-            <ul>${answers}</ul>
+          <div class="content qa-list">
+            ${answerDetails}
           </div>
         </section>
 
