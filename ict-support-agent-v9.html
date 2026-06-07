@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ICT Support Agent V9</title>
+    <link rel="stylesheet" href="./ict-support-agent-v9.css" />
+  </head>
+  <body>
+    <div class="teams-shell">
+      <aside class="teams-rail" aria-label="Teams navigatie">
+        <div class="waffle" aria-hidden="true">•••<br />•••<br />•••</div>
+        <div class="teams-logo" aria-hidden="true">T</div>
+        <nav>
+          <span>Activiteit</span>
+          <span>Chat</span>
+          <span>Agenda</span>
+          <span class="active">Support</span>
+          <span>Apps</span>
+        </nav>
+      </aside>
+
+      <div class="teams-main">
+        <header class="teams-topbar">
+          <div class="search-box" aria-hidden="true">Zoeken (Ctrl+Alt+E)</div>
+          <div class="user-chip" aria-hidden="true">MA</div>
+        </header>
+
+        <section class="teams-app-header">
+          <div class="app-mark" aria-hidden="true"></div>
+          <div>
+            <h1>ICT Support Agent</h1>
+            <p>Professionele intake voor ICT-problemen en meldingen aan de servicedesk</p>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" aria-label="Nieuwe melding starten" title="Nieuwe melding starten">
+            Nieuwe melding starten
+          </button>
+        </section>
+
+        <nav class="tabbar" aria-label="Applicatie tabs">
+          <span class="active">Melding</span>
+          <span>Ticket</span>
+          <span>Kennis</span>
+        </nav>
+
+        <main class="app-shell">
+          <section class="chat-panel" aria-label="ICT support wizard">
+            <div class="wizard-header">
+              <div>
+                <p class="eyebrow">Prototype V9</p>
+                <h2>Nieuwe ICT-melding</h2>
+              </div>
+              <span class="status-pill">Wizard</span>
+            </div>
+
+            <div class="quick-actions problem-menu" aria-label="Probleemkeuze">
+              <div class="menu-panel" id="mainCategoryMenu">
+                <p class="menu-title">Kies een hoofdcategorie</p>
+                <div class="menu-grid" id="mainCategoryGrid"></div>
+              </div>
+              <div class="menu-panel hidden" id="subProblemMenu">
+                <div class="submenu-header">
+                  <button class="back-button" id="backToMainButton" type="button">Terug</button>
+                  <p class="menu-title" id="subProblemTitle">Kies een probleem</p>
+                </div>
+                <div class="menu-grid" id="subProblemGrid"></div>
+              </div>
+            </div>
+
+            <div class="messages" id="messages" aria-live="polite"></div>
+
+            <form class="composer" id="chatForm">
+              <label class="sr-only" for="userInput">Beschrijf je ICT-probleem</label>
+              <input
+                id="userInput"
+                type="text"
+                autocomplete="off"
+                placeholder="Beschrijf je ICT-probleem..."
+              />
+              <button id="sendButton" type="submit">Volgende</button>
+            </form>
+          </section>
+
+          <aside class="ticket-panel" aria-label="Samenvatting van je melding">
+            <div class="ticket-header">
+              <div>
+                <p class="eyebrow">Melding</p>
+                <h2>Samenvatting van je melding</h2>
+              </div>
+              <span class="status-pill" id="ticketStatus">Nog niet nodig</span>
+            </div>
+
+            <div class="ticket-empty" id="ticketEmpty">
+              Zodra je melding is voorbereid, zie je hier een korte samenvatting.
+            </div>
+
+            <article class="ticket-card hidden" id="ticketCard">
+              <dl>
+                <div>
+                  <dt>Probleem</dt>
+                  <dd id="summaryProblem"></dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd id="summaryStatus"></dd>
+                </div>
+                <div>
+                  <dt>Prioriteit</dt>
+                  <dd id="summaryPriority"></dd>
+                </div>
+                <div>
+                  <dt>Volgende stap</dt>
+                  <dd id="summaryNextStep"></dd>
+                </div>
+                <div>
+                  <dt>Bron</dt>
+                  <dd id="summarySource"></dd>
+                </div>
+              </dl>
+              <div class="ticket-actions">
+                <button id="viewTicketButton" type="button">Bekijk ICT-ticket</button>
+              </div>
+            </article>
+          </aside>
+        </main>
+      </div>
+    </div>
+
+    <script src="./ict-support-agent-v9.js"></script>
+  </body>
+</html>
